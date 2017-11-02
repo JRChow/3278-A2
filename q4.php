@@ -13,8 +13,17 @@ mysql_connect($host,$username,$password);
 mysql_select_db($database) or die( "Unable to select database");
 
 // Step 3. Prepare the database query
-$query = "SELECT stadiumID, location, name
-FROM Stadiums WHERE name LIKE '%National%';";
+$query = """
+SELECT Players.playerID, Players.name, Players.teamID, SUM(Play.numberOfGoals) AS totalGoals
+FROM Players, Play
+WHERE Players.playerID = Play.playerID AND Players.teamID = Play.teamID
+AND (Players.playerID, Players.teamID) IN (
+	SELECT playerID, teamID
+	FROM Play
+	GROUP BY playerID, teamID
+	HAVING COUNT(matchID) >= 2)
+GROUP BY Players.playerID, Players.teamID;
+""";
 
 // Step 4. Execute the query
 $result = mysql_query($query) or die( "Unable to execute query:".mysql_error());
@@ -29,22 +38,24 @@ echo "</head>";
 echo "<body  align=center>";
 
 // Question content
-echo "<p align='center'><b>Q3: </b>Display the stadiumID, location and name of all the stadium(s), whose names contain the substring \"National\".</p><br><br>";
-echo "<p align='center'>The answer of Q3</p>";
+echo "<p align='center'><b>Q4: </b>Display the playerID, player name, teamID and total number of goals scored, for the player(s) who played in at least 2 matches.</p><br><br>";
+echo "<p align='center'>The answer of Q4</p>";
 
 echo "<table border=1 width=600 align='center'>";
 echo "<tr>";
-echo "<th>Stadium ID</th>";
-echo "<th>Location</th>";
-echo "<th>Name</th>";
+echo "<th>Player ID</th>";
+echo "<th>Player Name</th>";
+echo "<th>Team ID</th>";
+echo "<th>Total Goals</th>";
 echo "</tr>";
 
 while($row = mysql_fetch_array($result, MYSQL_ASSOC))
 {
 	echo "<tr>";
-	echo "<td>".$row['stadiumID']."</td>";
-	echo "<td>".$row['location']."</td>";
+	echo "<td>".$row['playerID']."</td>";
 	echo "<td>".$row['name']."</td>";
+	echo "<td>".$row['teamID']."</td>";
+	echo "<td>".$row['totalGoals']."</td>";
 	echo "</tr>";
 }
 
