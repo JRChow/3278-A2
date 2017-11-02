@@ -13,7 +13,7 @@ mysql_connect($host,$username,$password);
 mysql_select_db($database) or die( "Unable to select database");
 
 // Step 3. Prepare the database query
-$query = """
+$query = "
 SELECT Players.playerID, Players.name, Players.teamID, SUM(Play.numberOfGoals) AS totalGoals
 FROM Players, Play
 WHERE Players.playerID = Play.playerID AND Players.teamID = Play.teamID
@@ -23,7 +23,7 @@ AND (Players.playerID, Players.teamID) IN (
 	GROUP BY playerID, teamID
 	HAVING COUNT(matchID) >= 2)
 GROUP BY Players.playerID, Players.teamID;
-""";
+";
 
 // Step 4. Execute the query
 $result = mysql_query($query) or die( "Unable to execute query:".mysql_error());
