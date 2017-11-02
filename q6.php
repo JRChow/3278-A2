@@ -25,6 +25,7 @@ echo "<body align=center>";
 
 // Question content
 echo "<p align='center'><b>Q6: </b>Result.</p><br><br>";
+echo "<p align='center'>The answer of Q6</p>";
 
 echo "<table border=1 width=600 align='center'>";
 echo "<tr>";
