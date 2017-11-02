@@ -28,8 +28,9 @@ echo "<title>Homework answers</title>";
 echo "</head>";
 echo "<body  align=center>";
 
-echo "<p align='center'><b>Q1: </b>Display the playerID(s) and the name(s) of all players whose playerID are 1.</p><br><br>";
-echo "<p align='center'>The answer of Q1</p>";
+// Question content
+echo "<p align='center'><b>Q2: </b>Display the matchID, date and the stadium name of all match(es) that are held after 2017-9-30, sort the match(es) such that the later matches are listed ahead of the earlier matches.</p><br><br>";
+echo "<p align='center'>The answer of Q2</p>";
 
 echo "<table border=1 width=600 align='center'>";
 echo "<tr>";
