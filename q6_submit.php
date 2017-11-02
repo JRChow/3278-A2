@@ -22,11 +22,11 @@ echo "<!DOCTYPE html><html>";
 echo "<head>";
 echo "<title>Homework answers</title>";
 echo "</head>";
-echo "<body  align=center>";
+echo "<body align=center>";
 
 // Question content
 echo "<p align='center'><b>Q6: </b> isplay a drop-down menu which contains the teamID and team name of all the teams.</p><br><br>";
-echo "<form action='q6.php' method=GET>"
+echo "<form action='q6.php' method='GET'>"
 echo "<select name='teamID'>"
 
 while($row = mysql_fetch_array($result, MYSQL_ASSOC))
