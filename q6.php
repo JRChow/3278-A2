@@ -37,7 +37,7 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC))
 {
 	echo "<tr>";
 	echo "<td>".$row['playerID']."</td>";
-	echo "<td>".$row['name']."</td>";
+	echo "<td><a href='q7.php?playerID=".$row[playerID]."&teamID=".$_GET['teamID']."'>".$row['name']."</a></td>";
 	echo "</tr>";
 }
 
